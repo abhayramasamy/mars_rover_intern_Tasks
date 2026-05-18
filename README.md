@@ -14,8 +14,10 @@ This project implements publisher-subscriber based ROS2 nodes written in python 
 2) service was slighlty hard to implement, its packages and service still faces synchronization issues.
 
 ## work explained:
-The package `ros2_task1` contains python with two nodes `node1.py` `node2.py` with one of them being a publisher and otherbeing a subscriber to the topic `Topic`. Attempted implementation of a basic service `SetSpeed` where the share speeds and respond.
+The package `ros2_task1` contains python with two nodes `node1.py` `node2.py` with one of them being a publisher and otherbeing a subscriber to the topic `Topic`. Attempted implementation of a basic service `SetSpeed` where the share speeds and respond (service for now just sends speed and response is just "recievec").
 
 The package `cpp_pkg` contains two cpp nodes `node3cpp` `cpp_publisher` with node3cpp subscribes to the same node `Topic` and cpp_publisher publishes to the same topic but slighlty different data. There are no service implementations in here
 
 The package `my_interface` is an `ament_cmake` package containing `SetSpeed.srv` a service file to implement services.
+
+*Screenshots added to screenshots folder inside src*
