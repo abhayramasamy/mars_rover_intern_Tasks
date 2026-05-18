@@ -28,7 +28,6 @@ class Node1(Node):
             self.send_request(self.i)
 
         self.i += 1
-
     def send_request(self, speed):
         req = SetSpeed.Request()
         req.speed = speed
