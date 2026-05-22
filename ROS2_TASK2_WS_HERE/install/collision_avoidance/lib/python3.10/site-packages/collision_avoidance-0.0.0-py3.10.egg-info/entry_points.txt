@@ -1,0 +1,3 @@
+[console_scripts]
+collision_avoidance_node = collision_avoidance.collision_avoidance_node:main
+
