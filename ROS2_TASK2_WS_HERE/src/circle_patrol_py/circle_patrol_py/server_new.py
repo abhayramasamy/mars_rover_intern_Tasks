@@ -5,30 +5,21 @@ from rclpy.callback_groups import ReentrantCallbackGroup
 from rclpy.executors import MultiThreadedExecutor
 import time
 
-# >>> REPLACE THIS <<<
+# 
 from circle_patrol.action import ExecuteCircle
 from geometry_msgs.msg import Twist
 from turtlesim.msg import Pose
 import math
-# >>> REPLACE THIS <<<
+
 
 
 class GenericActionServer(Node):
-
-    ##### ================= USER CONFIG ================= #####
-
-    #GOAL_ACCEPT_CONDITION = lambda goal: goal.radius > 0.0
-
     THRESHOLD = 1.0  # WALL THRESHOLD
 
-    LOOP_SLEEP = 0.1  # small step for responsiveness
-
-    ##### ================================================= #####
+    LOOP_SLEEP = 0.1  
 
     def __init__(self):
         super().__init__('generic_action_server')
-
-        ##### MULTITHREADING #####
         self.cb_group = ReentrantCallbackGroup()
 
         self._action_server = ActionServer(
@@ -46,12 +37,9 @@ class GenericActionServer(Node):
         self.current_pose = None
         self.info('Action server booted up :) ')
 
-    ##### LOG HELPERS #####
     def info(self, msg): self.get_logger().info(msg)
     def warn(self, msg): self.get_logger().warning(msg)
     def error(self, msg): self.get_logger().error(msg)
-
-    ##### ================= GOAL VALIDATION ================= #####
     def goal_callback(self, goal_request):
         self.info(
             f'recieved goal request: {goal_request.radius}... validating...')
@@ -61,8 +49,6 @@ class GenericActionServer(Node):
 
         self.info('Goal accepted ... PASSED FOR EXECUTION ')
         return GoalResponse.ACCEPT
-
-    ##### ================= EXECUTION ================= #####
     def pose_callback(self, pose_msg):
         self.current_pose = pose_msg
 
@@ -75,8 +61,6 @@ class GenericActionServer(Node):
         return math.atan2(math.sin(theta), math.cos(theta))
 
     def execute_callback(self, goal_handle):
-
-        ##### ===== INITIALIZE STATE ===== #####
         status = {
             "prev_theta": None,
             "total_angle": 0.0,
@@ -92,8 +76,6 @@ class GenericActionServer(Node):
 
         feedback = ExecuteCircle.Feedback()
         self.info('executing circle task...')
-
-        ##### ===== MAIN EXECUTION LOOP ===== #####
         while True:
             if self.current_pose is None:
                 time.sleep(self.LOOP_SLEEP)
@@ -106,7 +88,6 @@ class GenericActionServer(Node):
                 result = ExecuteCircle.Result()
                 result.success = False
                 result.final_report = "cancelled mid-execution"
-                ##### FILL RESULT #####
                 return result
             
             
@@ -121,7 +102,6 @@ class GenericActionServer(Node):
                 y < self.THRESHOLD
             )
            
-            ##### ===== RUNTIME ABORT ===== #####
             if ABOUT_TO_HIT_WALL: 
                 self.error('Runtime abort triggered')
                 goal_handle.abort()
@@ -140,9 +120,9 @@ class GenericActionServer(Node):
             status['prev_theta'] = current_theta 
             status['distance'] = status['total_angle']*radius 
             
-            ##### ===== FEEDBACK ===== #####
+            ##### ===== FEEDBACK ===== 
             self.cmd_pub.publish(twist) #MOVE THE TURTLE ACROSS THE BOARD :)
-            ##### FILL FEEDBACK FIELDS #####
+
             feedback.distance_traveled = status['distance']
             feedback.current_status = f"angle = {status['total_angle']:.2f}"
             goal_handle.publish_feedback(feedback)
@@ -158,17 +138,11 @@ class GenericActionServer(Node):
                 result.final_report = "TASK DONE ... (:)) "
                 ##### FILL RESULT #####
                 return result
+            time.sleep(self.LOOP_SLEEP) #sleep
 
-            ##### ===== RESPONSIVE SLEEP ===== #####
-            time.sleep(self.LOOP_SLEEP)
-
-    ##### ================= CANCEL HANDLER ================= #####
     def cancel_callback(self, goal_handle):
         self.warn('Cancel request received')
         return CancelResponse.ACCEPT
-
-
-##### ================= MAIN ================= #####
 def main(args=None):
     rclpy.init(args=args)
 

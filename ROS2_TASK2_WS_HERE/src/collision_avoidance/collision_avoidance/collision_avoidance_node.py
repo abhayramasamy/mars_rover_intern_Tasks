@@ -12,9 +12,9 @@ class CollisionAvoidanceNode(Node):
     def __init__(self):
         super().__init__('collision_avoidance_node')
         qos_profile = QoSProfile(
-            reliability=QoSReliabilityPolicy.BEST_EFFORT,
-            history=QoSHistoryPolicy.KEEP_LAST,
-            depth=10
+            reliability = QoSReliabilityPolicy.BEST_EFFORT,
+            history = QoSHistoryPolicy.KEEP_LAST,
+            depth   =  10
         )
         self.declare_parameter('safety_threshold', 1.5)
         self.safety_threshold = self.get_parameter(
@@ -96,7 +96,6 @@ class CollisionAvoidanceNode(Node):
         	self.get_logger().info("Near wall! Turning...")
 
     	else:
-        	# Normal forward motion
         	#cmd.linear.x = 2.0
         	#cmd.angular.z = 0.0
         	pass
@@ -114,8 +113,8 @@ class CollisionAvoidanceNode(Node):
         error = target_theta - current_theta
         error = math.atan2(math.sin(error), math.cos(error))
 
-        if abs(error) > 0.05:
-            cmd.angular.z = 2.0 * error
+        if abs(error) > 0.05: #threshold to filter noise
+            cmd.angular.z = 2.0 * error #force the trun in prop to the error or difference between this and that
             cmd.linear.x = 0.0
         else:
             cmd.angular.z = 0.0
