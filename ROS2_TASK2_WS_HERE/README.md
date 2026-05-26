@@ -25,6 +25,6 @@ The package `collision_avoidance` implements the part a subpart 1 of task2 and h
 
 The package `circle_patrol` is an `ament_cmake` file containing the `action` directory and has the action file `ExecuteCircle.action` used in implementation of action there and also has a another package `circle_patrol_py` that has the python based implementation of task a subpart2 and has two files where `server_new` and  `client_new` are the latest versions of the files whereas `server.py` and `client.py` are older and different versions.
 
-*PART B is done in a separate readme file marked READMEPART2*
+*PART B is done in a separate readme file marked README_PART2.md*
 
 *Screenshots added to screenshots folder inside src*
