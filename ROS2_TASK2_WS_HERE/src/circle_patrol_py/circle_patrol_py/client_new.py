@@ -63,9 +63,9 @@ class GenericActionClient(Node):
         status = future.result().status
 
         if status == GoalStatus.STATUS_SUCCEEDED:
-            self.info(f'SUCCESS → {result.final_report} STATUS: COMPLETED')
+            self.info(f'SUCCESS  {result.final_report} STATUS: COMPLETED')
         elif status == GoalStatus.STATUS_ABORTED:
-            self.error(f'ABORTED → {result.final_report} STATUS: ABORTED')
+            self.error(f'ABORTED  {result.final_report} STATUS: ABORTED')
         else:
             self.error(f'UNKNOWN STATUS: {status}')
             
@@ -77,7 +77,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     node = GenericActionClient()
-    node.send_goal(1.0)
+    node.send_goal(3.5)
 
     try:
         rclpy.spin(node)
