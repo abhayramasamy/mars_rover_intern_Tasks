@@ -21,6 +21,6 @@ The task involves implementing different sensors using ros2 lidar, cam, im senso
 ## demo files:
 1) demo video screen recording present in *demo files* directory.
 
-##screenshots:
+## screenshots:
 1) screenshots of RVIZ2 TERMINAL with imu. lidar, camera, tf on screenshots, gazebo with lidar, camera also.
 2)demo videos updated
