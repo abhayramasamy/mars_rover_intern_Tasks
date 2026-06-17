@@ -15,6 +15,7 @@ The task involves implementing different sensors using ros2 lidar, cam, im senso
 3) run... `ros2 run gx_xplore angle_teleop_node` to start the camera arm joint controller node.
 4) after downloading the packages  *copy your present file path* to the package and carefully reqrte the file path presen t in the file: `robo_pkg/launch_file.py` 
 4) open new terminal from `robo_pkg` directory and run...`ros2 launch launch_file.py`
+5) the gazebo recieves twist message info via /model/my_robo/cmd_vel and one needs to use parameter bridges to connect the teleop_node which publishes in /cmd_vel by using command: `ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/model/my_robo/cmd_vel` and one can control the robot using teleop keyboard standard.
 
 ## demo files:
 1) demo video screen recording present in *demo files* directory.
