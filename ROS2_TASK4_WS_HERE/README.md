@@ -9,9 +9,6 @@ The task involves implementing different sensors using ros2 lidar, cam, im senso
 ## issues faced:
 1) I was unable ot configure the gui part of joint_controller due to some issues and instead i used a workaround in writing a custom publisher node that one input an angle in radians (-1.5 to 1.5), and adjust the arm and camera as such.
 
-##screenshots: 
-![image][screenshots/Screenshot from 2026-06-17 20-46-07.png]
-![image][screenshots/Screenshot from 2026-06-17 20-42-24.png]
 
 ## How to launch...
 1) download the package `ROS2_TASK4_WS_HERE` and perform `colcon build` to build packages.
@@ -23,3 +20,7 @@ The task involves implementing different sensors using ros2 lidar, cam, im senso
 
 ## demo files:
 1) demo video screen recording present in *demo files* directory.
+
+##screenshots:
+1) screenshots of RVIZ2 TERMINAL with imu. lidar, camera, tf on screenshots, gazebo with lidar, camera also.
+2)demo videos updated
