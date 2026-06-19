@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name='aruco_box'>
+    <static>true</static>  <!-- ADD THIS -->
+    
+    <link name='link'>
+      
+      <visual name='aruco_box_mesh'>
+        <geometry>
+          <mesh>
+            <uri>model://aruco_box/model.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+          
+        </geometry>
+        <material>
+    <ambient>1 1 1 1</ambient>
+    <diffuse>1 1 1 1</diffuse>
+    <specular>0 0 0 1</specular>
+    <emissive>0 0 0 1</emissive>
+  </material>
+
+  <!-- VERY IMPORTANT -->
+  <cast_shadows>false</cast_shadows>
+      </visual>
+		
+      <self_collide>0</self_collide>
+      <enable_wind>0</enable_wind>
+      <kinematic>0</kinematic>
+
+    </link>
+  </model>
+</sdf>
