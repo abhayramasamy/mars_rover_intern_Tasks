@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="cone_3">
+    <static>true</static>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <mesh>
+            <uri>model://cone_2/meshes/cone_3.stl</uri>
+       <scale>0.4 0.4 0.4</scale><!--  0.005 is too small 0.05 is still too large get the best scale and use it here -->
+          </mesh>
+        </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+          <diffuse>1 0 0 1</diffuse>
+        </material>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <mesh>
+            <uri>model://cone_2/meshes/cone_3.stl</uri>
+          </mesh>
+        </geometry>
+      </collision>
+    </link>
+  </model>
+</sdf>
