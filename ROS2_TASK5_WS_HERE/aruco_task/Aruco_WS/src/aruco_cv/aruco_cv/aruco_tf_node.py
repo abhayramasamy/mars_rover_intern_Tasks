@@ -15,16 +15,16 @@ class ArucoTfNode(Node):
 		self.sub = self.create_subscription(Image, '/camera/image_raw', self.image_callback, 10)
 		self.br = tf2_ros.TransformBroadcaster(self)
 		self.aruco_dict = cv2.aruco.getPredefinedDictionary(cv2.aruco.DICT_4X4_50)
-		self.params = cv2.aruco.DetectorParameters()
-		self.detector = cv2.aruco.ArucoDetector(self.aruco_dict, self.params)
+		self.params = cv2.aruco.DetectorParameters_create()
+		#self.detector = cv2.aruco.ArucoDetector(self.aruco_dict, self.params)
 		self.camera_matrix = np.array([[554.38,0.0,320.0],[0.0,554.38,240.0],[0.0,0.0,1.0]])
 		self.dist_coeffs = np.zeros((5,1))
 		self.marker_length = 0.5
-		self.R_fix = np.array([[0,0,1],[-1,0,0],[0,-1,0]]) #correction to convert opencv to ros frames
+		self.R_fix = np.array([[0,0,1],[-1,0,0],[0,-1,0]])
 
 	def image_callback(self, msg):
 		frame = self.bridge.imgmsg_to_cv2(msg, desired_encoding='bgr8')
-		corners, ids, _ = self.detector.detectMarkers(frame)
+		corners, ids, _ = cv2.aruco.detectMarkers(frame, self.aruco_dict, parameters = self.params)
 
 		if ids is not None:
 			rvecs, tvecs, _ = cv2.aruco.estimatePoseSingleMarkers(corners, self.marker_length, self.camera_matrix, self.dist_coeffs)
