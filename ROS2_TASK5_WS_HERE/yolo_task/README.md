@@ -42,7 +42,7 @@ I trained two different YOLO models:
 
 > **Versions to ensure it runs for yolo-client-node.py**: <br/>
 > 1) opencv --> 4.5.x
-> 2) numpy --> 1.26.x
+> 2) numpy --> 1.26.x <br/> 
 > **Version inside python virtual environment or docker to run yolo_server_node.py**:<br/>
 > 1) numpy/cv2 any version.
 > 2) ultralytics --> 8.4+
