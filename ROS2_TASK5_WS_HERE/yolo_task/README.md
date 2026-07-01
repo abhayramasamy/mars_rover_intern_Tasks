@@ -32,20 +32,25 @@ I trained two different YOLO models:
 
 6) opencv based detection and display pipeline.
 
+7) Communication inside a python virtual machine using zmq.
+
 ## issues faced:
 
 1) version control issues avoided using `python virtual machine` 
 
 2) Still not perfectly favarouble metrics due to Noise introduced from GAzebo dataset causing data_mismatch this is a necessary evil to help the model to generalize properly.
 
+
 ## how to run?
-1) One need a python virtual machine use: `venv` to run.
-
-
-## Generalized model training:
-
-
-
+1) One need a python virtual machine use: `venv` to run. 
+2) load the `aruco_cv` workspace from and build from the src directory using `colcon build`, download the required model files.
+3) Download the world sdf files from `worlds` directory.
+4) from scripts download the two launch files `yolo_launch.py yolo_launch_mc.py yolo_server_node.py`.*check file paths inside these folders*
+5) One might need a python virtual machine to safely run the model without breaking system packages.
+6) In a fresh terminal configure and activate a `venv`, with latest versions of `Ultralytics, opencv-python-heaadless, numpy, pyzmq`. then run `python3 yolo_server_node.py`.
+7) To launch `yolo_test_world_v2_lowphysics.sdf` you need to run: `ros2 launch yolo_launch_mc.py`, to launch the training world you need to run `ros2 launch yolo_launch.py`.
+8) Finally in another terminal after building the `aruco_cv` workspace and after sourcing it, run: `ros2 run aruco_cv yolo` to launch model: yolov8n or use `yolo_mc` to launch yolo26n version. 
+9) An Opencv terminal with gazebo shows up and the cones are demarcated and displayed as such.
 
 ## screenshots:
-
+Screenshots of the demo are included in the *Screenshots* folder.

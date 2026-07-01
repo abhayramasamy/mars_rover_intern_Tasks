@@ -24,8 +24,6 @@ setup(
     },
     entry_points={
         'console_scripts': [
-        	'aruco_tf = aruco_cv.aruco_tf_node:main',
-        	'snap = aruco_cv.snapshot_node:main',
         	'yolo = aruco_cv.yolo_client_node:main',
         	'yolo_mc = aruco_cv.yolo_client_mc:main'
         ],
