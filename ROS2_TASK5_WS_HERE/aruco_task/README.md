@@ -15,7 +15,7 @@ The project when run will display the aruco marker detection using opencv (in a 
 1) opencv2 versioning issues, and version mismatch due to cv_bridge() requirirng an older version of numpy.
 2) I was unable to create a proper texture and I was unable to import any aruco_markers properly so iam forced to import textures and a generator script to create the aruco "boxes" with markers on them from repository: [https://github.com/SaxionMechatronics/ros2-gazebo-aruco]
 
-> *versions: to ensure it runs for ROS2 humble*
+> *versions: to ensure it runs for ROS2 humble* <br/>
 > 1) opencv --> 4.5.x
 > 2) numpy --> 1.26.x
 
