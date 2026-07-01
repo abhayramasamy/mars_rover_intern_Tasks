@@ -6,7 +6,7 @@ This task requests us to design a custom yolo model to enable it to detect cones
 I trained two different YOLO models:
 1) version 1) yolov8nano trained on real life cones first and finetuned off Gazebo images (2nd training iteration) using a **a node to screenshot the camera frames being published off /camera/image_raw/ topic and store it automatically** about ~160 images collected to fine tune the model to adapt to the gazebo world's rendering as well. The model detects cones and returns a Bounding Box with coordinates a separate *opencv* based pipeline present to check for the dominant hue present inside the Bounding Box and differentiate it based off colour.
 
-2) *improvements:* By finetuning on custom dataset, the model can comfortably detect far placed cones or partially hidden cones with good confidence. Adjust to varying lighting and textures would not have been possible from real life scenarios too.
+2) *improvements:* By finetuning on custom dataset, the model can comfortably detect far placed cones or partially hidden cones with good confidence. The model can go after both simulations based cones and real life cones .
 
 3) *Problems:* Weak generalization to new colours can only reliably detect red, blue, yellow, green, pink. purple and ignores other miscellaneous colours like drab_orange or white.
 
@@ -40,6 +40,13 @@ I trained two different YOLO models:
 
 2) Still not perfectly favarouble metrics due to Noise introduced from GAzebo dataset causing data_mismatch this is a necessary evil to help the model to generalize properly.
 
+> **Versions to ensure it runs for yolo-client-node.py**: <br/>
+> 1) opencv --> 4.5.x
+> 2) numpy --> 1.26.x
+> **Version inside python virtual environment or docker to run yolo_server_node.py**:<br/>
+> 1) numpy/cv2 any version.
+> 2) ultralytics --> 8.4+
+> 3) zmq --> 27.1.0 (used here) 
 
 ## how to run?
 1) One need a python virtual machine use: `venv` to run. 
